@@ -3,8 +3,12 @@ import java.util.*;
 
 class Solution {
     public List<Integer> grayCode(int n) {
+
+        // faster property:
+        // for(var i = 0; i < (1 << n); i++) r.add(i ^ (i >> 1))
+        
         LinkedList<Integer> r = new LinkedList<Integer>();
-        recurse(n, new HashSet<>(), 0, r);
+        recurse(n, new HashSet<>(List.of(0)), 0, r);
         return r;
     }
 
@@ -13,20 +17,14 @@ class Solution {
         if (r.size() == (1 << n)) return true;
         
         for(var i = 0; i < n; i++) {
-            int j = last & (1 << i);
+            int j = last ^ (1 << i);
             if (!a.contains(j)) {
-                if (diffIs1(j, last)) {
-                    a.add(i);
-                    if (recurse(n, a, j, r)) return true; 
-                    a.remove(i);
-                }
+                a.add(j);
+                if (recurse(n, a, j, r)) return true; 
+                a.remove(j);
             }
         }
         r.removeLast();
         return false;
-    }
-
-    public boolean diffIs1(int a, int b) {
-        return ((65536 % (a ^ b)) == 0);
     }
 }

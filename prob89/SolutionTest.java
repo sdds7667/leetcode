@@ -23,20 +23,4 @@ class SolutionTest {
         assertEquals(expected, new Solution().grayCode(n));
     }
 
-    public static Stream<Arguments> diff() {
-        return Stream.of(
-            Arguments.of(0, 1, true),
-            Arguments.of(1, 0, true),
-            Arguments.of(0, 2, true),
-            Arguments.of(0, 3, false),
-            Arguments.of(1, 3, true),
-            Arguments.of(0, 8, true)
-        );
-    }
-
-    @ParameterizedTest
-    @MethodSource("diff")
-    public void testDiff(int a, int b, boolean expected) {
-        assertEquals(expected, new Solution().diffIs1(a, b));
-    }
 }
