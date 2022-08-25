@@ -10,8 +10,8 @@ class SolutionTest {
 
     public static Stream<Arguments> leetCode() {
         return Stream.of(
-                Arguments.of(1, 2, 3),
-                Arguments.of(-1, 1, 0)
+                Arguments.of("25525511135", List.of("255.255.11.135","255.255.111.35")),
+                Arguments.of("0000", List.of("0.0.0.0"))
         );
     }
 
