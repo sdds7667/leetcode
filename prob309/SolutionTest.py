@@ -18,3 +18,4 @@ class SolutionTest(TestCase):
 
     def test_own_1(self):
         self.assertEqual(30, Solution().maxProfit([18, 13, 19,  2,  6,  4,  5,  7, 16,  7, 11,  8,  3,  7, 15]))
+    
