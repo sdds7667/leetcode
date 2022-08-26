@@ -11,16 +11,36 @@ public:
         cin.tie(0);
         cout.tie(0);
     }
-    
+    bool reorderedPowerOf2(int n) {
+        if (n == 0) return false;
+        vector<int> c(10, 0);
+        vector<int> ic(10, 0);
+        int cn = 0;
+        for(;n > 0; n /= 10, cn++) {
+            c[n%10]++;
+        }
+
+        
+        for(int i = 1;; i <<= 1) {
+            fill(ic.begin(), ic.end(), 0);
+            int cj = 0;
+            for(int j = i; j > 0; j /= 10, cj++) 
+                ic[j%10]++;
+            if (cj < cn) continue;
+            if (cj > cn) break;
+            if (c == ic) return true;
+        }
+        return false;
+    }
 };
 
-bool test(UNDEFINED values, int expected) {
-    auto result = (new Solution())->;
+bool test(int n, bool expected) {
+    cout << "New Test =================================================\n";
+    auto result = (new Solution())->reorderedPowerOf2(n);
     if (result != expected) {
         cout << "Got " << result << " expected " << expected << "\n";
         cout << "Failed test\n";
-        for(const auto i: values)
-            cout << i << " ";
+        cout << n;
         cout << "\n";
         return false;
     }
@@ -29,13 +49,15 @@ bool test(UNDEFINED values, int expected) {
 
 int main() {
     cout << "Running" << "\n";
-    vector<pair<vector<int> *, int>> tests {
+    vector<pair<int, bool>> tests {
+        make_pair(1, true),
+        make_pair(10, false)
     };
 
     bool failed = false;
 
     for(const auto& p : tests) {
-        if (!test((*p.first), p.second)) {
+        if (!test(p.first, p.second)) {
             failed = true;
             break;
         }
