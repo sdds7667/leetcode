@@ -16,8 +16,10 @@ if __name__ == "__main__":
         print("Already exists; Removing")
         shutil.rmtree(probPath)
 
+    ignored_templates = ["java-intellij"]
+
     shutil.copytree((choice := random.choice(
-        list(Path("./templates").iterdir()))), probPath)
+        list(filter(lambda x: x.name not in ignored_templates, Path("./templates").iterdir())))), probPath)
 
     print(f"Chosen {choice.name}")
     os.system(
