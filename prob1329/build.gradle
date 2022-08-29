@@ -16,4 +16,15 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-params:5.8.1")
 }
 
-sourceSets.test.java.srcDirs=["."]
+sourceSets {
+    main{
+        java {
+            srcDir("src")
+        }
+    }
+    test {
+        java {
+            srcDir("test")
+        }
+    }
+}
