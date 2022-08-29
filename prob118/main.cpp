@@ -11,39 +11,29 @@ public:
         cin.tie(0);
         cout.tie(0);
     }
+    vector<vector<int>> generate(int numRows) {
+
+        vector<vector<int>> r {{1}};
+        if (numRows == 1) return r;
+        r.push_back(vector<int>{1,1});
+        
+        for(int i = 2; i < numRows; i++) {
+            r.push_back(vector<int>{1});
+            auto& v = r[i];
+            auto& s = r[i-1];
+            v.reserve(s.size() + 1);
+            for(int j = 1; j < s.size(); j++) 
+                v.push_back(s[j-1] + s[j]);
+            v.push_back(1);
+        }
+        return r;
+    }
     
 };
 
-bool test(UNDEFINED values, int expected) {
-    auto result = (new Solution())->;
-    if (result != expected) {
-        cout << "Got " << result << " expected " << expected << "\n";
-        cout << "Failed test\n";
-        for(const auto i: values)
-            cout << i << " ";
-        cout << "\n";
-        return false;
-    }
-    return true;
-}
+
 
 int main() {
-    cout << "Running" << "\n";
-    vector<pair<vector<int> *, int>> tests {
-    };
-
-    bool failed = false;
-
-    for(const auto& p : tests) {
-        if (!test((*p.first), p.second)) {
-            failed = true;
-            break;
-        }
-    }
-
-    if (!failed) 
-        cout << "Passed all tests\n";
-
-    cout << "Done running.\n";
+    cout << "Tests not provided" << "\n";
     return 0;
 }
