@@ -1,3 +1,6 @@
-.gradle
-build
-*.class
+main
+.idea
+.vscode
+.vs
+out 
+CMakeSettings.json

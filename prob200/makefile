@@ -1,8 +1,6 @@
-
-
-java-build:
-	gradle build
+build:
+	g++ -o Solution.exe main.cpp
 
 test:
-	make java-build
-	gradle test 
+	make build
+	./Solution.exe
