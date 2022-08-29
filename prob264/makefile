@@ -1,4 +1,4 @@
 
 
 test:
-	python -m unittest SolutionTest.py
+	python -m unittest SolutionTest.py -v
