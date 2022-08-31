@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "*.gml": "javascript",
+        "vector": "cpp"
+    }
+}
