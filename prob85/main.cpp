@@ -6,23 +6,11 @@ using namespace std;
 
 class Solution {
 public:
-    int maximalRectangle(vector<vector<char>>& matrix) {
-        vector<int> h(matrix[0].size(), 0);
-        int r = matrix.size(), c = matrix[0].size();
-        int m;
-        for(int i = 0; i < r; i++) {
-            for(int j = 0; j < c; j++) 
-                h[j] = ((matrix[i][j] == '0') ? 0 : (h[j] + 1));
-            m = max(largestRectangleArea(h), m);
-        }
-        return m;
-    }
-    
     int largestRectangleArea(vector<int>& heights) {
         heights.push_back(0);
         vector<pair<int, int>> s;
         s.emplace_back(0, heights[0]);
-        int m = heights[0];
+        int m = INT_MIN;
         for(int i = 1; i < heights.size(); i++) {
             int h = heights[i];
             if (h == heights[i-1]) continue;
@@ -32,12 +20,9 @@ public:
             }
             
             int l = i;
-            int ch;
-            while (!s.empty() && h < s.back().second) {
-                auto& p = s.back();
+            int c, ch;
+            while (!s.empty() && heights[i] < s.back().second) {
                 s.pop_back();
-                ch = p.second;
-                l = p.first;
                 m = max(m, ch * (i - l));
             }
             s.emplace_back(l, h);
