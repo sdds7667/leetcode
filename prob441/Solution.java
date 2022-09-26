@@ -1,5 +1,5 @@
 class Solution {
-    public int add(int x, int y) {
-        return x+y;
+    public int arrangeCoins(int n) {
+        return (((int) Math.sqrt(((long) n) * 8 + 1)) - 1) / 2;
     }
 }
