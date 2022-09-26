@@ -1,5 +1,5 @@
 package Solution
 
-func add(x int32, y int32) int32 {
+func add(x int, y int) int {
 	return x + y
 }

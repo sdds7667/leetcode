@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func testAdd(t *testing.T) {
+func TestAdd(t *testing.T) {
 	test_data := []struct {
 		x        int
 		y        int
@@ -17,7 +17,7 @@ func testAdd(t *testing.T) {
 
 	for index, test := range test_data {
 		t.Run(fmt.Sprintf("%v) %v + %v = %v", index, test.x, test.y, test.y), func(t *testing.T) {
-			assert
+			assert.Equal(t, add(test.x, test.y), test.expected)
 		})
 	}
 }
