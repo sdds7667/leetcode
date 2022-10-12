@@ -9,7 +9,7 @@ def parse_arguments():
     """
     arguments = argparse.ArgumentParser()
     arguments.add_argument("problem")
-    return arguments.parse_args()
+    return vars(arguments.parse_args()).values()
 
 
 if __name__ == "__main__":
