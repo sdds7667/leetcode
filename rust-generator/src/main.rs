@@ -9,12 +9,23 @@ fn main() {
         }
     };
 
+    let main_rs_file_path = format!("/workspaces/leetcode/prob{}/src/main.rs", problem_number);
+
     println!("Creating a solution for the prob: {}", problem_number);
     Command::new("cargo")
         .arg("new")
         .arg(format!("/workspaces/leetcode/prob{}", problem_number))
         .status()
         .expect("Failed to create the project");
+
+    fs::write(
+        &main_rs_file_path,
+        format!(
+            "struct Solution {{}}\n\n{}",
+            (fs::read_to_string(&main_rs_file_path).expect("Failed to read the main.rs file"))
+        ),
+    )
+    .expect("Could not write main.rs");
 
     fs::copy(
         "/workspaces/leetcode/rust-generator/.gitignore-model",
@@ -31,5 +42,6 @@ fn main() {
 
     Command::new("code")
         .arg(format!("/workspaces/leetcode/prob{}", problem_number))
-        .status().expect("Failed to switch code directory");
+        .status()
+        .expect("Failed to switch code directory");
 }

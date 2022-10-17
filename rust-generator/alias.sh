@@ -1,0 +1,1 @@
+alias rust-gen='cargo run --manifest-path /workspaces/leetcode/rust-generator/Cargo.toml'
