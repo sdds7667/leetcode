@@ -1,49 +1,54 @@
 
-#include<bits/stdc++.h>
 
+#include <iostream>
+#include <vector>
 using namespace std;
 
-
-class Solution {
+class Solution
+{
 public:
-    Solution() {
+    Solution()
+    {
         ios_base::sync_with_stdio(0);
         cin.tie(0);
         cout.tie(0);
     }
-    
-};
+    double findMedianSortedArrays(vector<int> &nums1, vector<int> &nums2)
+    {
+        int ll = nums1.size();
+        int rl = nums2.size();
+        if (rl < ll)
+            return findMedianSortedArrays(nums2, nums1);
 
-bool test(UNDEFINED values, int expected) {
-    auto result = (new Solution())->;
-    if (result != expected) {
-        cout << "Got " << result << " expected " << expected << "\n";
-        cout << "Failed test\n";
-        for(const auto i: values)
-            cout << i << " ";
-        cout << "\n";
-        return false;
-    }
-    return true;
-}
+        int l = 0, r = ll - 1, half = (ll + rl) / 2;
+        while (true)
+        {
+            // cout << l << " " << r << " " << endl;
+            int ml = (r >= 0) ? ((l + r) / 2) : -1;
+            int mr = half - ml - 2;
 
-int main() {
-    cout << "Running" << "\n";
-    vector<pair<vector<int> *, int>> tests {
-    };
+            int al = (ml < 0) ? INT32_MIN : nums1[ml];
+            int ar = (ml + 1 >= ll) ? INT32_MAX : nums1[ml + 1];
 
-    bool failed = false;
-
-    for(const auto& p : tests) {
-        if (!test((*p.first), p.second)) {
-            failed = true;
-            break;
+            int bl = (mr < 0) ? INT32_MIN : nums2[mr];
+            int br = (mr + 1 >= rl) ? INT32_MAX : nums2[mr + 1];
+            if (al <= br && bl <= ar)
+            {
+                if ((ll + rl) % 2)
+                    return min(ar, br);
+                else {
+                    // cout << al << " " << bl << " " << ar << " " << br << endl;
+                    return ( ((double)max(al, bl) + min(ar, br)) / 2.0 );
+                }
+            }
+            else if (al > br)
+            {
+                r = ml - 1;
+            }
+            else
+            {
+                l = ml + 1;
+            }
         }
     }
-
-    if (!failed) 
-        cout << "Passed all tests\n";
-
-    cout << "Done running.\n";
-    return 0;
-}
+};
